@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Мерекелік шақыру</title>
+    <title>Мерекелік шақыру 🌷</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #8b1e32;
-            --gold: #c5a059;
-            --bg: #fac4d2;
+            --gold: #d4af37;
+            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent; 
+        }
 
         body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--bg);
-            /* Нәзік градиент */
-            background: linear-gradient(135deg, #fac4d2 0%, #fde4ea 100%);
+            background: linear-gradient(-45deg, #f8d2db, #fce3e9, #f8d2db, #fdf0f3);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
             padding: 20px;
             font-family: 'Cormorant Garamond', serif;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
-        /* 15 градусқа бір рет айналу анимациясы */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         @keyframes rotateOnce {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(15deg); }
-            75% { transform: rotate(-15deg); }
-            100% { transform: rotate(0deg); }
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.02); }
+            75% { transform: rotate(-5deg) scale(1.02); }
+            100% { transform: rotate(0deg) scale(1); }
         }
 
         .animate-now {
@@ -41,86 +52,135 @@
 
         .card {
             width: 100%;
-            max-width: 400px;
-            background: #ffffff;
-            padding: 45px 30px;
-            border-radius: 25px;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 25px 55px rgba(139, 30, 50, 0.18);
+            box-shadow: 0 20px 50px rgba(139, 30, 50, 0.15);
             position: relative;
             z-index: 10;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        /* Алтын жақтау */
         .card::before {
             content: '';
             position: absolute;
-            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
             border: 1px solid var(--gold);
-            border-radius: 18px;
+            border-radius: 12px;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        #screen2 { display: none; animation: fadeIn 1s ease; }
+        #screen2 { 
+            display: none; 
+            animation: fadeIn 0.8s ease; 
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
-        .photo-box {
+        .media-box {
             width: 100%;
-            aspect-ratio: 1;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid var(--gold);
-            cursor: pointer;
-            transition: transform 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
         }
 
-        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-box {
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .video-box {
+            aspect-ratio: 16/9; /* Видеоға арналған пропорция */
+            background: #000;
+        }
+
+        .media-box img, .media-box video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block;
+        }
 
         h1 {
             font-family: 'Playfair Display', serif;
             color: var(--primary);
-            font-size: 1.85rem;
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
             font-weight: 600;
         }
 
         .text {
-            font-size: 1.35rem;
-            color: #333;
-            line-height: 1.5;
+            font-size: 1.3rem;
+            color: #444;
+            line-height: 1.6;
             margin-bottom: 25px;
             font-style: italic;
         }
 
         .details {
-            border-top: 1px solid rgba(197, 160, 89, 0.3);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            border-top: 1px dashed rgba(212, 175, 55, 0.6);
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.6);
             padding: 20px 0;
-            margin: 20px 0;
+            margin: 25px 0;
+            background: rgba(212, 175, 55, 0.03);
         }
 
-        .details p { font-size: 1.3rem; margin: 10px 0; color: #444; }
-        .details b { color: var(--primary); font-family: 'Playfair Display', serif; }
+        .details p { 
+            font-size: 1.25rem; 
+            margin: 12px 0; 
+            color: #333; 
+        }
+        
+        .details b { 
+            color: var(--primary); 
+            font-family: 'Playfair Display', serif; 
+        }
 
         .map-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 20px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: var(--gold);
+            color: white;
             text-decoration: none;
-            border-radius: 20px;
-            font-size: 1rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .map-btn:hover { background: var(--gold); color: white; }
+        .map-btn:active { 
+            transform: scale(0.95); 
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+        }
 
         .btn-main {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #a62841);
             color: white;
             border: none;
             padding: 18px 35px;
@@ -129,24 +189,33 @@
             cursor: pointer;
             width: 100%;
             font-family: 'Playfair Display', serif;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(139, 30, 50, 0.2);
+            box-shadow: 0 10px 25px rgba(139, 30, 50, 0.3);
+            transition: 0.3s;
         }
 
-        .footer-sig { margin-top: 30px; font-size: 1.2rem; color: #888; font-style: italic; }
+        .btn-main:active { transform: scale(0.96); }
+
+        .footer-sig { 
+            margin-top: 30px; 
+            font-size: 1.3rem; 
+            color: var(--primary); 
+            font-style: italic;
+            font-weight: 600;
+        }
 
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="auto">
         <source src="music1.mp3" type="audio/mpeg">
     </audio>
 
     <div class="card" id="screen1">
-        <div class="photo-box">
-            <img src="0ce41fb3-ca23-4652-96d7-d8301dbf82af.jpeg" alt="Photo 1">
+        <div class="media-box photo-box">
+            <img src="6f8fbbc4-b2fb-4d57-9953-9a920a2c2eb3.jpeg" alt="Photo 1">
         </div>
         <h1>Құрметті ханымдар!</h1>
         <p class="text">
@@ -156,24 +225,36 @@
     </div>
 
     <div class="card" id="screen2">
-        <div class="photo-box" id="photo2" onclick="reAnimate()">
+        <div class="media-box photo-box" id="photo2" onclick="reAnimate()">
             <img src="0ce41fb3-ca23-4652-96d7-d8301dbf82af.jpeg" alt="Photo 2">
         </div>
+        
         <p class="text">
             Осынау айтулы мерекені бізбен бірге салтанатты дастархан басында қарсы алуға шақырамыз!
         </p>
+
+        <h2 class="subtitle">Арнайы сіздерге арналған 🎥</h2>
+        <div class="media-box video-box">
+            <video id="inviteVideo" controls playsinline>
+                <source src="video.mp4" type="video/mp4">
+                Сіздің браузеріңіз бейнежазбаны қолдамайды.
+            </video>
+        </div>
+
         <div class="details">
             <p>📅 <b>Күні:</b> 9 наурыз</p>
             <p>⏰ <b>Уақыты:</b> 18:20 (кешкі ақ дастархан)</p>
             <p>📍 <b>Мекенжайы:</b> Сарыағаш қаласы,<br>«Нәрлен» рестораны</p>
-            <a href="https://2gis.kz/kz_turkistan_oblast_rwop/geo/70000001104025042" class="map-link map-btn" target="_blank">📍 Картадан көру</a>
+            <a href="https://2gis.kz/kz_turkistan_oblast_rwop/geo/70000001104025042" class="map-btn" target="_blank">📍 Картадан көру</a>
         </div>
+        
         <p class="footer-sig">Ізгі ниетпен: Жігіттер қауымы</p>
     </div>
 
     <script>
         const audio = document.getElementById('bgMusic');
-        let playing = false;
+        const video = document.getElementById('inviteVideo');
+        let isInviteOpened = false;
 
         function openInvite() {
             document.getElementById('screen1').style.display = 'none';
@@ -183,21 +264,54 @@
             const p2 = document.getElementById('photo2');
             p2.classList.add('animate-now');
             
-            audio.play().then(() => { playing = true; });
+            isInviteOpened = true;
+            playBackgroundMusic();
         }
 
         function reAnimate() {
             const p2 = document.getElementById('photo2');
-            // Анимацияны қайта қосу үшін классты өшіріп, қайта қосу керек
             p2.classList.remove('animate-now');
-            void p2.offsetWidth; // Браузерге рендерді жаңартқызу (hack)
+            void p2.offsetWidth; 
             p2.classList.add('animate-now');
         }
 
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) { audio.pause(); } 
-            else if (playing) { audio.play(); }
+        // --- МУЗЫКАНЫ ЖӘНЕ ВИДЕОНЫ БАСҚАРУ ЛОГИКАСЫ --- //
+
+        function playBackgroundMusic() {
+            // Егер шақыру ашылған болса ЖӘНЕ видео қосулы болмаса ғана музыка ойнайды
+            if (isInviteOpened && video.paused) {
+                audio.play().catch(() => console.log("Музыка бұғатталды"));
+            }
+        }
+
+        function stopAllMedia() {
+            audio.pause();
+            video.pause();
+        }
+
+        // 1. Видео қосылғанда фондық музыка тоқтайды
+        video.addEventListener('play', () => {
+            audio.pause();
         });
+
+        // 2. Видео тоқтағанда немесе біткенде фондық музыка қайта жалғасады
+        video.addEventListener('pause', playBackgroundMusic);
+        video.addEventListener('ended', playBackgroundMusic);
+
+        // 3. Терезені жапқанда немесе басқа вкладкаға өткенде бәрі тоқтайды
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) { 
+                stopAllMedia(); 
+            } else { 
+                playBackgroundMusic(); 
+            }
+        });
+
+        // 4. 2GIS картасына өткенде (фокус жоғалғанда) бәрі тоқтайды
+        window.addEventListener("blur", stopAllMedia);
+        window.addEventListener("focus", playBackgroundMusic);
+        window.addEventListener("pagehide", stopAllMedia);
+
     </script>
 </body>
 </html>
