@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Мерекелік шақыру</title>
+    <style>
+        :root {
+            --primary: #a72a42; /* Салмақты қою қызыл/бордовый түс */
+            --bg-color: #fac4d2; /* Сен сұраған фон */
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', serif; /* Классикалық, ересектерге арналған шрифт */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        /* 15 ГРАДУСҚА АЙНАЛАТЫН АНИМАЦИЯ (Қатема 🤣) */
+        @keyframes katemaAnim {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--glass);
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        /* Бірінші және екінші экрандар */
+        #screen2 {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Суреттерге арналған стиль */
+        .photo-box {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 2px solid #d4af37; /* Алтын түстес рамка */
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Екінші суретке 15 градустық анимация қосу */
+        .animated-photo {
+            animation: katemaAnim 4s ease-in-out infinite;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        p.text {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Мәліметтер блогы */
+        .details-box {
+            border-top: 1px solid #d4af37;
+            border-bottom: 1px solid #d4af37;
+            padding: 20px 0;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .details-box p {
+            font-size: 1.15rem;
+            margin: 8px 0;
+            color: #222;
+        }
+
+        .details-box b {
+            color: var(--primary);
+        }
+
+        /* Батырма */
+        .btn-open {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 35px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-open:active {
+            background: #7a1d2f;
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-style: italic;
+            color: #555;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container" id="screen1">
+        <div class="photo-box">
+            <img src="1.jpeg" alt="Басты сурет">
+        </div>
+        
+        <h1>Құрметті аяулы ханымдар!</h1>
+        <p class="text">
+            Сіздерді көктемнің ең көрікті мерекесі — 8 наурызбен шын жүректен құттықтаймыз! Көңілдеріңіз гүлдей жайнап, жүздеріңізден күлкі кетпесін.
+        </p>
+
+        <button class="btn-open" onclick="openInvite()">Шақыруды ашу 💌</button>
+    </div>
+
+    <div class="container" id="screen2">
+        <div class="photo-box animated-photo">
+            <img src="2.jpeg" alt="Анимациялық сурет">
+        </div>
+
+        <p class="text" style="font-size: 1.3rem;">
+            Осы бір ерекше сәтті бірге бөлісу мақсатында, сіздерді мерекелік дастархан басында күтеміз!
+        </p>
+
+        <div class="details-box">
+            <p>📅 <b>Күні:</b> 9 наурыз</p>
+            <p>⏰ <b>Уақыты:</b> 18:20</p>
+            <p>📍 <b>Орны:</b> Сарыағаш қаласы, <br> «Нәрлен» рестораны</p>
+        </div>
+
+        <p class="signature">Ізгі ниетпен: Жігіттер қауымы</p>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        let isMusicAllowed = false;
+
+        // Шақыруды ашу батырмасын басқанда
+        function openInvite() {
+            document.getElementById('screen1').style.display = 'none';
+            document.getElementById('screen2').style.display = 'block';
+            
+            // Музыка қосылады
+            audio.play().then(() => {
+                isMusicAllowed = true;
+            }).catch(e => console.log("Браузер автоплейді бұғаттады"));
+        }
+
+        // Автоматты түрде өшу және қайта қосылу логикасы
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                // Сайттан шығып кетсе (немесе телефон бұғатталса) - өшеді
+                audio.pause();
+            } else {
+                // Қайта кірсе - қосылады (егер алдын ала батырма басылған болса)
+                if (isMusicAllowed) {
+                    audio.play();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
