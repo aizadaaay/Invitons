@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>7 Мамыр — Мерекелік шақыру 🎖️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a3a5f; /* Темно-синий "военный" */
-            --gold: #c5a028;
-            --accent: #8b1e32;
-            --bg-gradient: linear-gradient(135deg, #f1f4f9 0%, #d5dde8 100%);
+            --primary: #1a3a5f;
+            --gold:    #c5a028;
+            --accent:  #8b1e32;
+            --pink:    #f48fb1;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-tap-highlight-color: transparent; 
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
         }
 
         body {
@@ -25,89 +29,113 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--bg-gradient);
+            background: linear-gradient(145deg, #f1f4f9 0%, #d8e2f0 50%, #f9eef3 100%);
             padding: 20px;
             font-family: 'Cormorant Garamond', serif;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* =================== САКУРА CANVAS =================== */
+        #sakura-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* =================== КАРТОЧКА =================== */
         .card {
+            position: relative;
+            z-index: 10;
             width: 100%;
             max-width: 420px;
             background: rgba(255, 255, 255, 0.98);
-            padding: 40px 25px;
-            border-radius: 20px;
+            padding: 40px 26px 36px;
+            border-radius: 22px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(26, 58, 95, 0.15);
-            position: relative;
-            border: 1px solid rgba(197, 160, 40, 0.3);
+            box-shadow: 0 24px 60px rgba(26, 58, 95, 0.14), 0 4px 16px rgba(0,0,0,0.05);
+            border: 1px solid rgba(197, 160, 40, 0.25);
         }
 
+        /* Внутренняя рамка */
         .card::before {
             content: '';
             position: absolute;
             top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid var(--gold);
-            border-radius: 15px;
+            border: 1px solid rgba(197, 160, 40, 0.35);
+            border-radius: 14px;
             pointer-events: none;
-            opacity: 0.4;
         }
 
-        #screen2 { display: none; animation: fadeIn 0.8s ease; }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        /* Декор — угловые лепестки */
+        .card::after {
+            content: '🌸';
+            position: absolute;
+            top: 14px; right: 18px;
+            font-size: 1.3rem;
+            opacity: 0.55;
         }
 
+        /* =================== ЭКРАНЫ =================== */
+        #screen2 {
+            display: none;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =================== МЕДИА =================== */
         .media-box {
             width: 100%;
-            margin-bottom: 20px;
-            border-radius: 15px;
+            margin-bottom: 22px;
+            border-radius: 16px;
             overflow: hidden;
             border: 2px solid var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
         .photo-box { aspect-ratio: 1; }
 
-        .media-box img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
+        .media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            transition: transform 0.4s ease;
         }
 
+        .media-box img:hover {
+            transform: scale(1.03);
+        }
+
+        /* =================== ТИПОГРАФИКА =================== */
         h1 {
             font-family: 'Playfair Display', serif;
             color: var(--primary);
-            font-size: 1.7rem;
-            margin-bottom: 15px;
+            font-size: 1.65rem;
+            margin-bottom: 14px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            line-height: 1.25;
         }
 
         .text {
-            font-size: 1.25rem;
-            color: #333;
-            line-height: 1.5;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            color: #3a3a3a;
+            line-height: 1.6;
+            margin-bottom: 24px;
             font-style: italic;
         }
 
-        .direct-link {
-            display: block;
-            margin-top: 15px;
-            color: var(--accent);
-            text-decoration: underline;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
+        /* =================== КНОПКИ =================== */
         .btn-main {
-            background: linear-gradient(135deg, var(--primary), #2c5282);
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
             color: white;
             border: none;
             padding: 18px 30px;
@@ -118,83 +146,122 @@
             font-family: 'Playfair Display', serif;
             letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(26, 58, 95, 0.3);
-            transition: 0.3s;
+            box-shadow: 0 10px 28px rgba(26, 58, 95, 0.28);
+            transition: transform 0.18s, box-shadow 0.18s;
         }
 
-        .btn-main:active { transform: scale(0.96); }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(26, 58, 95, 0.35);
+        }
 
+        .btn-main:active {
+            transform: scale(0.97);
+        }
+
+        /* =================== ДЕТАЛИ =================== */
         .details {
             border-top: 1px dashed var(--gold);
             border-bottom: 1px dashed var(--gold);
-            padding: 20px 0;
-            margin: 20px 0;
-            background: rgba(197, 160, 40, 0.05);
+            padding: 18px 4px;
+            margin: 18px 0;
+            background: rgba(197, 160, 40, 0.04);
         }
 
-        .details p { font-size: 1.2rem; margin: 10px 0; color: #222; }
-        .details b { color: var(--primary); font-family: 'Playfair Display', serif; }
+        .details p {
+            font-size: 1.15rem;
+            margin: 9px 0;
+            color: #222;
+            line-height: 1.4;
+        }
+
+        .details b {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
 
         .map-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 10px;
-            padding: 12px 25px;
-            background: var(--gold);
+            margin-top: 12px;
+            padding: 13px 28px;
+            background: linear-gradient(135deg, var(--gold) 0%, #e8b830 100%);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-size: 1rem;
             font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(197, 160, 40, 0.4);
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(197, 160, 40, 0.38);
+            transition: transform 0.18s, box-shadow 0.18s;
         }
 
-        .footer-sig { 
-            margin-top: 25px; 
-            font-size: 1.2rem; 
-            color: var(--accent); 
+        .map-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(197, 160, 40, 0.45);
+        }
+
+        .map-btn:active {
+            transform: scale(0.97);
+        }
+
+        .footer-sig {
+            margin-top: 22px;
+            font-size: 1.2rem;
+            color: var(--accent);
             font-style: italic;
             font-weight: 600;
         }
 
-        /* Анимация для фото */
-        .animate-img { animation: pulseScale 2s infinite ease-in-out; }
-        @keyframes pulseScale {
+        /* Анимация пульс для первой картинки */
+        .animate-img {
+            animation: pulseImg 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseImg {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50%       { transform: scale(1.025); }
+        }
+
+        /* Декоративные лепестки-эмодзи */
+        .petal-deco {
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            opacity: 0.7;
+            margin: 8px 0 4px;
+            display: block;
         }
     </style>
 </head>
 <body>
 
+    <!-- ПЫШНАЯ САКУРА -->
+    <canvas id="sakura-canvas"></canvas>
+
     <audio id="bgMusic" loop>
         <source src="music1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- ЭКРАН 1: САҚУРА/ФОТО ЖӘНЕ СІЛТЕМЕ -->
+    <!-- ЭКРАН 1 -->
     <div class="card" id="screen1">
         <div class="media-box photo-box">
-            <!-- Осында сакура немесе мерекелік сурет қой -->
             <img src="6f8fbbc4-b2fb-4d57-9953-9a920a2c2eb3.jpeg" alt="7 May" class="animate-img">
         </div>
+        <span class="petal-deco">🌸 🎖️ 🌸</span>
         <h1>Құрметті ер-азаматтар!</h1>
         <p class="text">
             Сіздерді 7 мамыр – Отан қорғаушылар күнімен шын жүректен құттықтаймыз!
         </p>
         <button class="btn-main" onclick="openInvite()">Шақыруды ашу 🎖️</button>
-        
-        <!-- Ссылка астында (красиво поставленная ссылка) -->
-
     </div>
 
-    <!-- ЭКРАН 2: ШАҚЫРУ МӘТІНІ -->
+    <!-- ЭКРАН 2 -->
     <div class="card" id="screen2">
         <div class="media-box photo-box">
             <img src="0ce41fb3-ca23-4652-96d7-d8301dbf82af.jpeg" alt="Invitation Details">
         </div>
-        
+        <span class="petal-deco">🌸 🌸 🌸</span>
         <p class="text">
             Ерлік пен намыс мерекесін бізбен бірге салтанатты дастархан басында атап өтуге шақырамыз!
         </p>
@@ -203,30 +270,142 @@
             <p>📅 <b>Күні:</b> 7 мамыр, 2026 жыл</p>
             <p>⏰ <b>Уақыты:</b> 19:00 (Мерекелік кеш)</p>
             <p>📍 <b>Мекенжайы:</b> Сарыағаш қаласы,<br>«Нәрлен» рестораны</p>
-            <a href="https://2gis.kz/kz_turkistan_oblast_rwop/geo/70000001104025042" class="map-btn" target="_blank">📍 Картадан көру</a>
+            <a href="https://2gis.kz/kz_turkistan_oblast_rwop/geo/70000001104025042"
+               class="map-btn" target="_blank" rel="noopener">📍 Картадан көру</a>
         </div>
-        
-        <p class="footer-sig">Ізгі ниетпен: Арулар қауымы</p>
+
+        <p class="footer-sig">Ізгі ниетпен: Арулар қауымы 💐</p>
     </div>
 
     <script>
-        const audio = document.getElementById('bgMusic');
+    /* =================== ПЕРЕХОД =================== */
+    const audio = document.getElementById('bgMusic');
 
-        function openInvite() {
-            document.getElementById('screen1').style.display = 'none';
-            document.getElementById('screen2').style.display = 'block';
-            
-            // Музыканы қосу
-            audio.play().catch(() => console.log("Музыканы қолмен қосу керек"));
+    function openInvite() {
+        document.getElementById('screen1').style.display = 'none';
+        document.getElementById('screen2').style.display = 'block';
+        audio.play().catch(() => {});
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            audio.pause();
+        } else if (document.getElementById('screen2').style.display === 'block') {
+            audio.play().catch(() => {});
         }
+    });
 
-        // Терезе жабылғанда музыка тоқтайды
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) { audio.pause(); } 
-            else if (document.getElementById('screen2').style.display === 'block') {
-                audio.play();
-            }
+    /* =================== ПЫШНАЯ САКУРА =================== */
+    const canvas = document.getElementById('sakura-canvas');
+    const ctx    = canvas.getContext('2d');
+
+    let W = canvas.width  = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    });
+
+    /* Рисуем красивый лепесток через bezier */
+    function drawPetal(c, x, y, size, angle, alpha, fill) {
+        c.save();
+        c.translate(x, y);
+        c.rotate(angle);
+        c.globalAlpha = alpha;
+
+        c.beginPath();
+        c.moveTo(0, -size);
+        c.bezierCurveTo( size * 1.05, -size * 0.45,
+                         size * 1.05,  size * 0.55,
+                         0,            size * 0.95);
+        c.bezierCurveTo(-size * 1.05,  size * 0.55,
+                        -size * 1.05, -size * 0.45,
+                         0,           -size);
+        c.fillStyle = fill;
+        c.fill();
+
+        /* Светлая прожилка по центру */
+        c.beginPath();
+        c.moveTo(0, -size * 0.85);
+        c.quadraticCurveTo(size * 0.15, 0, 0, size * 0.85);
+        c.strokeStyle = 'rgba(255,255,255,0.4)';
+        c.lineWidth   = size * 0.13;
+        c.stroke();
+
+        c.restore();
+    }
+
+    /* Широкая палитра — белые, розовые, персиковые */
+    const PALETTE = [
+        [255, 192, 210], [255, 210, 228], [252, 230, 240],
+        [255, 175, 200], [255, 240, 245], [248, 200, 218],
+        [255, 220, 235], [250, 185, 205],
+    ];
+
+    function rndFill() {
+        const [r, g, b] = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+        const a = (Math.random() * 0.35 + 0.45).toFixed(2);
+        return `rgba(${r},${g},${b},${a})`;
+    }
+
+    const TOTAL = 80; /* лепестков */
+
+    const petals = Array.from({ length: TOTAL }, () => ({
+        x:         Math.random() * W,
+        y:         Math.random() * H,
+        size:      Math.random() * 10 + 5,
+        angle:     Math.random() * Math.PI * 2,
+        spin:      (Math.random() - 0.5) * 0.04,
+        dx:        (Math.random() - 0.42) * 1.3,
+        dy:        Math.random() * 1.1 + 0.35,
+        swing:     Math.random() * Math.PI * 2,
+        swingS:    Math.random() * 0.014 + 0.004,
+        swingA:    Math.random() * 1.8 + 0.5,
+        fill:      rndFill(),
+        alpha:     Math.random() * 0.4 + 0.45,
+    }));
+
+    /* Мелкие мерцающие частички */
+    const sparks = Array.from({ length: 35 }, () => ({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        r:  Math.random() * 2.2 + 0.6,
+        dy: Math.random() * 0.6 + 0.15,
+        dx: (Math.random() - 0.5) * 0.4,
+        op: Math.random() * 0.2 + 0.08,
+    }));
+
+    function loop() {
+        ctx.clearRect(0, 0, W, H);
+
+        /* Частички */
+        sparks.forEach(s => {
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,200,220,${s.op})`;
+            ctx.fill();
+            s.y += s.dy; s.x += s.dx;
+            if (s.y > H + 4) { s.y = -4; s.x = Math.random() * W; }
         });
+
+        /* Лепестки */
+        petals.forEach(p => {
+            p.swing += p.swingS;
+            p.x += p.dx + Math.sin(p.swing) * p.swingA;
+            p.y += p.dy;
+            p.angle += p.spin;
+
+            if (p.y > H + 22) { p.y = -22; p.x = Math.random() * W; p.fill = rndFill(); }
+            if (p.x >  W + 22) p.x = -22;
+            if (p.x < -22)     p.x =  W + 22;
+
+            drawPetal(ctx, p.x, p.y, p.size, p.angle, p.alpha, p.fill);
+        });
+
+        requestAnimationFrame(loop);
+    }
+    loop();
     </script>
 </body>
 </html>
