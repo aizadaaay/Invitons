@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Мерекелік шақыру 🌷</title>
+    <title>7 Мамыр — Мерекелік шақыру 🎖️</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8b1e32;
-            --gold: #d4af37;
-            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            --primary: #1a3a5f; /* Темно-синий "военный" */
+            --gold: #c5a028;
+            --accent: #8b1e32;
+            --bg-gradient: linear-gradient(135deg, #f1f4f9 0%, #d5dde8 100%);
         }
 
         * { 
@@ -24,61 +25,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #f8d2db, #fce3e9, #f8d2db, #fdf0f3);
-            background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
+            background: var(--bg-gradient);
             padding: 20px;
             font-family: 'Cormorant Garamond', serif;
             overflow-x: hidden;
-            overflow-y: auto;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes rotateOnce {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(5deg) scale(1.02); }
-            75% { transform: rotate(-5deg) scale(1.02); }
-            100% { transform: rotate(0deg) scale(1); }
-        }
-
-        .animate-now {
-            animation: rotateOnce 1.5s ease-in-out forwards;
         }
 
         .card {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px 25px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(139, 30, 50, 0.15);
+            box-shadow: 0 20px 50px rgba(26, 58, 95, 0.15);
             position: relative;
-            z-index: 10;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(197, 160, 40, 0.3);
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: 12px; left: 12px; right: 12px; bottom: 12px;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
             border: 1px solid var(--gold);
-            border-radius: 12px;
+            border-radius: 15px;
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
-        #screen2 { 
-            display: none; 
-            animation: fadeIn 0.8s ease; 
-        }
+        #screen2 { display: none; animation: fadeIn 0.8s ease; }
 
         @keyframes fadeIn { 
             from { opacity: 0; transform: translateY(20px); } 
@@ -87,25 +62,16 @@
 
         .media-box {
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid var(--gold);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            position: relative;
         }
 
-        .photo-box {
-            aspect-ratio: 1;
-            cursor: pointer;
-        }
+        .photo-box { aspect-ratio: 1; }
 
-        .video-box {
-            aspect-ratio: 16/9; /* Видеоға арналған пропорция */
-            background: #000;
-        }
-
-        .media-box img, .media-box video { 
+        .media-box img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
@@ -115,203 +81,152 @@
         h1 {
             font-family: 'Playfair Display', serif;
             color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.7rem;
+            margin-bottom: 15px;
             font-weight: 700;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
         .text {
-            font-size: 1.3rem;
-            color: #444;
-            line-height: 1.6;
+            font-size: 1.25rem;
+            color: #333;
+            line-height: 1.5;
             margin-bottom: 25px;
             font-style: italic;
         }
 
-        .details {
-            border-top: 1px dashed rgba(212, 175, 55, 0.6);
-            border-bottom: 1px dashed rgba(212, 175, 55, 0.6);
-            padding: 20px 0;
-            margin: 25px 0;
-            background: rgba(212, 175, 55, 0.03);
-        }
-
-        .details p { 
-            font-size: 1.25rem; 
-            margin: 12px 0; 
-            color: #333; 
-        }
-        
-        .details b { 
-            color: var(--primary); 
-            font-family: 'Playfair Display', serif; 
-        }
-
-        .map-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+        .direct-link {
+            display: block;
             margin-top: 15px;
-            padding: 12px 25px;
-            background: var(--gold);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            text-decoration: underline;
+            font-size: 0.95rem;
             font-weight: 600;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .map-btn:active { 
-            transform: scale(0.95); 
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+            cursor: pointer;
         }
 
         .btn-main {
-            background: linear-gradient(135deg, var(--primary), #a62841);
+            background: linear-gradient(135deg, var(--primary), #2c5282);
             color: white;
             border: none;
-            padding: 18px 35px;
-            font-size: 1.1rem;
+            padding: 18px 30px;
+            font-size: 1rem;
             border-radius: 50px;
             cursor: pointer;
             width: 100%;
             font-family: 'Playfair Display', serif;
             letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(139, 30, 50, 0.3);
+            box-shadow: 0 10px 25px rgba(26, 58, 95, 0.3);
             transition: 0.3s;
         }
 
         .btn-main:active { transform: scale(0.96); }
 
+        .details {
+            border-top: 1px dashed var(--gold);
+            border-bottom: 1px dashed var(--gold);
+            padding: 20px 0;
+            margin: 20px 0;
+            background: rgba(197, 160, 40, 0.05);
+        }
+
+        .details p { font-size: 1.2rem; margin: 10px 0; color: #222; }
+        .details b { color: var(--primary); font-family: 'Playfair Display', serif; }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(197, 160, 40, 0.4);
+        }
+
         .footer-sig { 
-            margin-top: 30px; 
-            font-size: 1.3rem; 
-            color: var(--primary); 
+            margin-top: 25px; 
+            font-size: 1.2rem; 
+            color: var(--accent); 
             font-style: italic;
             font-weight: 600;
         }
 
+        /* Анимация для фото */
+        .animate-img { animation: pulseScale 2s infinite ease-in-out; }
+        @keyframes pulseScale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic" loop>
         <source src="music1.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- ЭКРАН 1: САҚУРА/ФОТО ЖӘНЕ СІЛТЕМЕ -->
     <div class="card" id="screen1">
         <div class="media-box photo-box">
-            <img src="6f8fbbc4-b2fb-4d57-9953-9a920a2c2eb3.jpeg" alt="Photo 1">
+            <!-- Осында сакура немесе мерекелік сурет қой -->
+            <img src="6f8fbbc4-b2fb-4d57-9953-9a920a2c2eb3.jpeg" alt="7 May" class="animate-img">
         </div>
-        <h1>Құрметті ханымдар!</h1>
+        <h1>Құрметті ер-азаматтар!</h1>
         <p class="text">
-            Сіздерді көктемнің ең игілікті мерекесі — 8 наурыз Халықаралық әйелдер күнімен шын жүректен құттықтаймыз!
+            Сіздерді 7 мамыр – Отан қорғаушылар күнімен шын жүректен құттықтаймыз!
         </p>
-        <button class="btn-main" onclick="openInvite()">Ашу 💌</button>
+        <button class="btn-main" onclick="openInvite()">Шақыруды ашу 🎖️</button>
+        
+        <!-- Ссылка астында (красиво поставленная ссылка) -->
+        <a href="https://invitons.onrender.com/" class="direct-link">Сайт арқылы көру (сілтеме)</a>
     </div>
 
+    <!-- ЭКРАН 2: ШАҚЫРУ МӘТІНІ -->
     <div class="card" id="screen2">
-        <div class="media-box photo-box" id="photo2" onclick="reAnimate()">
-            <img src="0ce41fb3-ca23-4652-96d7-d8301dbf82af.jpeg" alt="Photo 2">
+        <div class="media-box photo-box">
+            <img src="0ce41fb3-ca23-4652-96d7-d8301dbf82af.jpeg" alt="Invitation Details">
         </div>
         
         <p class="text">
-            Осынау айтулы мерекені бізбен бірге салтанатты дастархан басында қарсы алуға шақырамыз!
+            Ерлік пен намыс мерекесін бізбен бірге салтанатты дастархан басында атап өтуге шақырамыз!
         </p>
 
-        <h2 class="subtitle">Арнайы сіздерге арналған 🎥</h2>
-        <div class="media-box video-box">
-            <video id="inviteVideo" controls playsinline>
-                <source src="8b2bb053-86fa-4cd2-9a06-ecb7b7118944.mov" type="video/mp4">
-                Сіздің браузеріңіз бейнежазбаны қолдамайды.
-            </video>
-        </div>
-
         <div class="details">
-            <p>📅 <b>Күні:</b> 9 наурыз</p>
-            <p>⏰ <b>Уақыты:</b> 18:20 (кешкі ақ дастархан)</p>
+            <p>📅 <b>Күні:</b> 7 мамыр, 2026 жыл</p>
+            <p>⏰ <b>Уақыты:</b> 19:00 (Мерекелік кеш)</p>
             <p>📍 <b>Мекенжайы:</b> Сарыағаш қаласы,<br>«Нәрлен» рестораны</p>
             <a href="https://2gis.kz/kz_turkistan_oblast_rwop/geo/70000001104025042" class="map-btn" target="_blank">📍 Картадан көру</a>
         </div>
         
-        <p class="footer-sig">Ізгі ниетпен: Жігіттер қауымы</p>
+        <p class="footer-sig">Ізгі ниетпен: Арулар қауымы</p>
     </div>
 
     <script>
         const audio = document.getElementById('bgMusic');
-        const video = document.getElementById('inviteVideo');
-        let isInviteOpened = false;
 
         function openInvite() {
             document.getElementById('screen1').style.display = 'none';
             document.getElementById('screen2').style.display = 'block';
             
-            // Суреттің анимациясын бастау
-            const p2 = document.getElementById('photo2');
-            p2.classList.add('animate-now');
-            
-            isInviteOpened = true;
-            playBackgroundMusic();
+            // Музыканы қосу
+            audio.play().catch(() => console.log("Музыканы қолмен қосу керек"));
         }
 
-        function reAnimate() {
-            const p2 = document.getElementById('photo2');
-            p2.classList.remove('animate-now');
-            void p2.offsetWidth; 
-            p2.classList.add('animate-now');
-        }
-
-        // --- МУЗЫКАНЫ ЖӘНЕ ВИДЕОНЫ БАСҚАРУ ЛОГИКАСЫ --- //
-
-        function playBackgroundMusic() {
-            // Егер шақыру ашылған болса ЖӘНЕ видео қосулы болмаса ғана музыка ойнайды
-            if (isInviteOpened && video.paused) {
-                audio.play().catch(() => console.log("Музыка бұғатталды"));
-            }
-        }
-
-        function stopAllMedia() {
-            audio.pause();
-            video.pause();
-        }
-
-        // 1. Видео қосылғанда фондық музыка тоқтайды
-        video.addEventListener('play', () => {
-            audio.pause();
-        });
-
-        // 2. Видео тоқтағанда немесе біткенде фондық музыка қайта жалғасады
-        video.addEventListener('pause', playBackgroundMusic);
-        video.addEventListener('ended', playBackgroundMusic);
-
-        // 3. Терезені жапқанда немесе басқа вкладкаға өткенде бәрі тоқтайды
+        // Терезе жабылғанда музыка тоқтайды
         document.addEventListener("visibilitychange", () => {
-            if (document.hidden) { 
-                stopAllMedia(); 
-            } else { 
-                playBackgroundMusic(); 
+            if (document.hidden) { audio.pause(); } 
+            else if (document.getElementById('screen2').style.display === 'block') {
+                audio.play();
             }
         });
-
-        // 4. 2GIS картасына өткенде (фокус жоғалғанда) бәрі тоқтайды
-        window.addEventListener("blur", stopAllMedia);
-        window.addEventListener("focus", playBackgroundMusic);
-        window.addEventListener("pagehide", stopAllMedia);
-
     </script>
 </body>
 </html>
